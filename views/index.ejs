@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <script src="https://kit.fontawesome.com/f3359f797c.js" crossorigin="anonymous"></script>
+    <title>Weather App</title>
+</head>
+<body>
+    <div class="container">
+        <div class="weather-container">
+            <div class="search">
+                <form action="/" method="post">
+                    <input type="text" name="latlon">
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </div>
+            <% if (locals.data) { %>
+            <div class="weather-info">
+                <img class="weather-logo" src=<%= icon %> alt="" width="150">
+                <h3 style="color: white; text-transform: capitalize;"><%= data.weather[0].description %></h3>
+                <p class="temp"><%= data.main.temp %>°C</p>
+                <p class="city">Coordinate: <%= data.coord.lat %>, <%= data.coord.lon %></p>
+                <p class="city">Around <%= data.name %></p>
+            </div>
+            <div class="other-container">
+                <div class="humidity">
+                    <i class="fa-solid fa-water"></i>
+                    <div>
+                        <p class="info"><%= data.main.humidity %>%</p>
+                        <p class="text">Humidity</p>   
+                    </div>
+                </div>
+                <div class="wind">
+                    <i class="fa-solid fa-wind"></i>
+                    <div>
+                        <p class="info"><%= data.wind.speed %> m/s</p>
+                        <p class="text">Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+            <% } else { %>
+                <div class="weather-info">
+                    <h1 style="color: white; text-align: center;">Weather forecast today?</h1>
+                    <p class="temp" style="font-size: 1.5rem; text-align: center;">Please input your location's coordinate above</p>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
